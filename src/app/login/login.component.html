@@ -1,0 +1,31 @@
+<div class="login-wrapper">
+<mat-card class="login-card">
+        <mat-card-content>
+            <form class="my-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <mat-form-field class="full-width">
+                    <mat-label for="username">Username</mat-label>
+                    <input matInput formControlName="username" [ngClass]="{ 'is-invalid': submitted && username.errors }" />
+                    <div *ngIf="submitted && username.errors" class="invalid-feedback">
+                        <div *ngIf="username.errors.required">Username is required</div>
+                    </div>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label for="password">Password</mat-label>
+                    <input matInput formControlName="password" [ngClass]="{ 'is-invalid': submitted && password.errors }" />
+                    <div *ngIf="submitted && password.errors" class="invalid-feedback">
+                        <div *ngIf="password.errors.required">Password is required</div>
+                    </div>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-error *ngIf="wrongCreds">
+            Wrong Credentials
+        </mat-error>
+
+        <mat-card-actions>
+            <button mat-raised-button [disabled]="loading" class="btn btn-primary" (click)="onSubmit()">
+                Login
+            </button>
+        </mat-card-actions>
+    </mat-card>
+    </div>
